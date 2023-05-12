@@ -1,0 +1,50 @@
+[gd_scene load_steps=6 format=3 uid="uid://db6o1nhamgx4q"]
+
+[ext_resource type="Texture2D" uid="uid://bit3388o8dbal" path="res://assets/solid_white.jpg" id="1_vutbv"]
+[ext_resource type="TileSet" uid="uid://4iut021ynux" path="res://levels/tileset.tres" id="2_jo1p4"]
+[ext_resource type="PackedScene" uid="uid://c0awxnm4fhre6" path="res://characters/white.tscn" id="3_tw83v"]
+[ext_resource type="PackedScene" uid="uid://c3g675oj2tjlq" path="res://black_pit.tscn" id="4_lxcgf"]
+
+[sub_resource type="GDScript" id="GDScript_rdy27"]
+script/source = "extends Node2D
+
+func _ready():
+	Count.level2 = 2
+
+func _process(_delta):
+	if Input.is_action_just_pressed(\"reset\"):
+		get_tree().change_scene_to_file(\"res://levels/level_2.tscn\")
+	
+	if Count.level2 == 0:
+		get_tree().change_scene_to_file(\"res://levels/level_3.tscn\")
+
+
+func _on_black_pit_body_entered(body):
+	body.queue_free()
+	get_node(\"BlackPit\").queue_free()
+	Count.level2 -= 1
+"
+
+[node name="Level2" type="Node2D"]
+script = SubResource("GDScript_rdy27")
+
+[node name="SolidWhite" type="Sprite2D" parent="."]
+position = Vector2(288, 168)
+scale = Vector2(18, 10.5)
+texture = ExtResource("1_vutbv")
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("2_jo1p4")
+format = 2
+layer_0/tile_data = PackedInt32Array(983046, 0, 2, 983047, 65536, 2, 983048, 65536, 2, 983049, 65536, 2, 983050, 131072, 2, 983054, 0, 2, 983055, 65536, 2, 983056, 65536, 2, 983057, 65536, 2, 983058, 65536, 2, 983059, 65536, 2, 983060, 65536, 2, 983061, 131072, 2, 983062, 0, 2, 983063, 65536, 2, 983064, 65536, 2, 983065, 65536, 2, 983066, 65536, 2, 983067, 65536, 2, 983068, 65536, 2, 983069, 131072, 2, 327686, 0, 0, 327687, 65536, 2, 327688, 65536, 2, 327689, 65536, 2, 327690, 131072, 0, 327694, 0, 0, 327695, 65536, 2, 327696, 65536, 2, 327697, 65536, 2, 327698, 65536, 2, 327699, 65536, 2, 327700, 65536, 2, 327701, 131072, 0, 327702, 0, 0, 327703, 65536, 2, 327704, 65536, 2, 327705, 65536, 2, 327706, 65536, 2, 327707, 65536, 2, 327708, 65536, 2, 327709, 131072, 0, 393246, 131072, 0, 458782, 131072, 1, 524318, 131072, 1, 589854, 196608, 3, 655390, 131072, 1, 720926, 196608, 3, 786462, 131072, 1, 851998, 131072, 1, 917534, 131072, 2, 393221, 0, 0, 458757, 131072, 1, 524293, 131072, 1, 589829, 196608, 5, 655365, 196608, 5, 720901, 196608, 5, 786437, 131072, 1, 851973, 131072, 1, 917509, 0, 2, 589841, 0, 0, 720913, 0, 2, 655377, 196608, 3, 589842, 131072, 0, 720914, 131072, 2, 655378, 196608, 5, 655376, 393216, 1, 655379, 458752, 1, 393245, 0, 2, 917533, 0, 0, 589853, 393216, 1, 720925, 393216, 1, 524315, 458752, 1, 786459, 458752, 1, 524314, 196608, 4, 786458, 196608, 6, 524312, 0, 0, 786456, 0, 2, 589848, 196608, 5, 655384, 196608, 5, 720920, 196608, 5, 851993, 0, 2, 851994, 131072, 2, 458777, 0, 0, 458778, 131072, 0, 589849, 196608, 3, 655385, 196608, 3, 720921, 196608, 3, 917518, 131072, 0, 851981, 131072, 0, 786444, 393216, 3, 393230, 131072, 2, 458765, 131072, 2, 524300, 393216, 4, 655371, 458752, 1, 851979, 0, 0, 917514, 0, 0, 458763, 0, 2, 393226, 0, 2, 589834, 393216, 3, 720906, 393216, 4, 655369, 65536, 2, 393222, 131072, 2, 917510, 131072, 0, 393238, 131072, 2, 393237, 0, 2, 917526, 131072, 0, 917525, 0, 0, 655368, 65536, 2, 655367, 65536, 2, 589830, 131072, 0, 720902, 131072, 2, 655366, 196608, 5, 393227, 131072, 0, 917515, 131072, 2, 917517, 0, 2, 393229, 0, 0, 851980, 196608, 4, 458764, 196608, 6)
+
+[node name="BlackPit" parent="." instance=ExtResource("4_lxcgf")]
+position = Vector2(424, 168)
+
+[node name="White" parent="." instance=ExtResource("3_tw83v")]
+position = Vector2(144, 128)
+
+[node name="White2" parent="." instance=ExtResource("3_tw83v")]
+position = Vector2(144, 208)
+
+[connection signal="body_entered" from="BlackPit" to="." method="_on_black_pit_body_entered"]

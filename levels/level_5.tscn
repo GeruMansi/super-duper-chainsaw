@@ -1,0 +1,101 @@
+[gd_scene load_steps=6 format=3 uid="uid://c317dddngacl0"]
+
+[ext_resource type="Texture2D" uid="uid://bit3388o8dbal" path="res://assets/solid_white.jpg" id="1_m4u0o"]
+[ext_resource type="TileSet" uid="uid://4iut021ynux" path="res://levels/tileset.tres" id="1_o2igm"]
+[ext_resource type="PackedScene" uid="uid://c0awxnm4fhre6" path="res://characters/white.tscn" id="1_tc2n3"]
+[ext_resource type="PackedScene" uid="uid://c3g675oj2tjlq" path="res://black_pit.tscn" id="2_4lbtv"]
+
+[sub_resource type="GDScript" id="GDScript_iws65"]
+script/source = "extends Node2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	Count.level5 = 8
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(_delta):
+	if Input.is_action_just_pressed(\"reset\"):
+		get_tree().change_scene_to_file(\"res://levels/level_5.tscn\")
+	if Count.level5 == 0:
+		get_tree().change_scene_to_file(\"res://levels/level_4.tscn\")
+
+
+func _on_black_pit_body_entered(body):
+	body.queue_free()
+	Count.level5 -= 1
+	get_node(\"BlackPit\").queue_free()
+
+
+func _on_black_pit_2_body_entered(body):
+	body.queue_free()
+	Count.level5 -= 1
+	get_node(\"BlackPit2\").queue_free()
+
+
+func _on_black_pit_3_body_entered(body):
+	body.queue_free()
+	Count.level5 -= 1
+	get_node(\"BlackPit3\").queue_free()
+
+
+func _on_black_pit_4_body_entered(body):
+	body.queue_free()
+	Count.level5 -= 1
+	get_node(\"BlackPit4\").queue_free()
+"
+
+[node name="Level5" type="Node2D"]
+script = SubResource("GDScript_iws65")
+
+[node name="SolidWhite" type="Sprite2D" parent="."]
+position = Vector2(288, 168)
+scale = Vector2(18, 10.5)
+texture = ExtResource("1_m4u0o")
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("1_o2igm")
+format = 2
+layer_0/tile_data = PackedInt32Array(262160, 65536, 0, 262161, 65536, 0, 262162, 65536, 0, 262163, 65536, 0, 983056, 65536, 0, 983057, 65536, 0, 983058, 65536, 0, 983059, 65536, 0, 262164, 65536, 0, 262165, 65536, 0, 262166, 65536, 0, 262167, 65536, 0, 262159, 65536, 0, 262158, 65536, 0, 262157, 65536, 0, 262156, 65536, 0, 983052, 65536, 0, 983053, 65536, 0, 983054, 65536, 0, 983055, 65536, 0, 983060, 65536, 0, 983061, 65536, 0, 983062, 65536, 0, 983063, 65536, 0, 327691, 0, 1, 393227, 0, 1, 458763, 0, 1, 786443, 131072, 1, 851979, 0, 1, 917515, 0, 1, 327704, 0, 1, 393240, 0, 1, 458776, 0, 1, 786456, 0, 1, 851992, 0, 1, 917528, 0, 1, 262155, 0, 0, 720920, 131072, 1, 262168, 131072, 0, 720907, 131072, 1, 983064, 131072, 2, 524299, 131072, 1, 983051, 0, 2, 524312, 131072, 1, 589848, 131072, 1, 655384, 131072, 1, 589835, 131072, 1, 655371, 131072, 1, 589841, 0, 0, 655378, 131072, 2, 589842, 131072, 0, 655377, 0, 2)
+
+[node name="BlackPit" parent="." instance=ExtResource("2_4lbtv")]
+position = Vector2(264, 136)
+
+[node name="BlackPit2" parent="." instance=ExtResource("2_4lbtv")]
+position = Vector2(312, 136)
+
+[node name="BlackPit3" parent="." instance=ExtResource("2_4lbtv")]
+position = Vector2(264, 184)
+
+[node name="BlackPit4" parent="." instance=ExtResource("2_4lbtv")]
+position = Vector2(312, 184)
+
+[node name="White" parent="." instance=ExtResource("1_tc2n3")]
+position = Vector2(208, 88)
+
+[node name="White2" parent="." instance=ExtResource("1_tc2n3")]
+position = Vector2(208, 224)
+
+[node name="White3" parent="." instance=ExtResource("1_tc2n3")]
+position = Vector2(208, 158)
+
+[node name="White4" parent="." instance=ExtResource("1_tc2n3")]
+position = Vector2(368, 158)
+
+[node name="White5" parent="." instance=ExtResource("1_tc2n3")]
+position = Vector2(368, 224)
+
+[node name="White6" parent="." instance=ExtResource("1_tc2n3")]
+position = Vector2(288, 224)
+
+[node name="White7" parent="." instance=ExtResource("1_tc2n3")]
+position = Vector2(368, 88)
+
+[node name="White8" parent="." instance=ExtResource("1_tc2n3")]
+position = Vector2(288, 88)
+
+[connection signal="body_entered" from="BlackPit" to="." method="_on_black_pit_body_entered"]
+[connection signal="body_entered" from="BlackPit2" to="." method="_on_black_pit_2_body_entered"]
+[connection signal="body_entered" from="BlackPit3" to="." method="_on_black_pit_3_body_entered"]
+[connection signal="body_entered" from="BlackPit4" to="." method="_on_black_pit_4_body_entered"]

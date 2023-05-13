@@ -11,3 +11,5 @@ var level7: int
 var level8: int
 var level9: int
 var level10: int
+var level11: int
+var level12: int

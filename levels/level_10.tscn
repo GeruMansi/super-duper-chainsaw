@@ -1,15 +1,77 @@
-[gd_scene load_steps=2 format=3 uid="uid://b1854x7acaop3"]
+[gd_scene load_steps=8 format=3 uid="uid://b1854x7acaop3"]
 
 [ext_resource type="Texture2D" uid="uid://bit3388o8dbal" path="res://assets/solid_white.jpg" id="1_fk8fk"]
+[ext_resource type="TileSet" uid="uid://4iut021ynux" path="res://levels/tileset.tres" id="2_6sftp"]
+[ext_resource type="PackedScene" uid="uid://1w8v0f1i7yr5" path="res://grey_pit.tscn" id="3_e1aa1"]
+[ext_resource type="PackedScene" uid="uid://c0awxnm4fhre6" path="res://characters/white.tscn" id="4_4w265"]
+[ext_resource type="PackedScene" uid="uid://d3fb4hajdfjsc" path="res://characters/black.tscn" id="5_5nx27"]
+[ext_resource type="PackedScene" uid="uid://c3i1q5j65j8tx" path="res://characters/grey.tscn" id="6_0ku8k"]
+
+[sub_resource type="GDScript" id="GDScript_rvbfj"]
+script/source = "extends Node2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	Count.level10 = 6
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(_delta):
+	if Input.is_action_just_pressed(\"reset\"):
+		get_tree().change_scene_to_file(\"res://levels/level_10.tscn\")
+	
+	if Count.level10 == 0:
+		get_tree().change_scene_to_file(\"res://levels/level_0.tscn\")
+
+
+func _on_grey_pit_body_entered(body):
+	body.queue_free()
+	Count.level10 -= 1
+
+
+func _on_grey_pit_2_body_entered(body):
+	body.queue_free()
+	Count.level10 -= 1
+"
 
 [node name="level10" type="Node2D"]
+script = SubResource("GDScript_rvbfj")
 
 [node name="SolidWhite" type="Sprite2D" parent="."]
-visible = false
 modulate = Color(0, 0, 0, 1)
 position = Vector2(288, 168)
 scale = Vector2(18, 10.5)
 texture = ExtResource("1_fk8fk")
 
 [node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("2_6sftp")
 format = 2
+layer_0/tile_data = PackedInt32Array(786448, 262144, 0, 786449, 262144, 0, 786450, 262144, 0, 786451, 262144, 0, 458768, 262144, 0, 458769, 262144, 0, 458770, 262144, 0, 458771, 262144, 0, 458767, 262144, 0, 458766, 262144, 0, 458765, 262144, 0, 458764, 262144, 0, 786444, 262144, 0, 786445, 262144, 0, 786446, 262144, 0, 786447, 262144, 0, 786452, 262144, 0, 786453, 262144, 0, 786454, 262144, 0, 786455, 262144, 0, 458772, 262144, 0, 458773, 262144, 0, 458774, 262144, 0, 458775, 262144, 0, 524316, 131072, 4, 589852, 393216, 6, 655388, 327680, 0, 720924, 327680, 1, 524295, 196608, 1, 589831, 196608, 2, 655367, 393216, 5, 720903, 131072, 4, 458760, 262144, 0, 458761, 262144, 0, 458762, 262144, 0, 458763, 262144, 0, 786440, 65536, 3, 786441, 458752, 2, 786442, 393216, 0, 786443, 262144, 0, 786456, 262144, 0, 786457, 262144, 0, 786458, 262144, 0, 786459, 262144, 2, 458776, 262144, 0, 458777, 458752, 0, 458778, 393216, 2, 458779, 65536, 3, 458780, 131072, 3, 458759, 196608, 0, 786460, 327680, 2, 786439, 0, 5, 655375, 393216, 5, 720911, 131072, 5, 524300, 393216, 5, 589836, 393216, 6, 720910, 393216, 2, 524305, 393216, 1, 524306, 458752, 1, 655387, 196608, 0, 720923, 196608, 2, 589832, 327680, 2, 524296, 327680, 0, 655383, 393216, 5, 720919, 393216, 6, 524309, 458752, 2, 524308, 0, 3, 589844, 393216, 6)
+
+[node name="GreyPit" parent="." instance=ExtResource("3_e1aa1")]
+position = Vector2(168, 144)
+
+[node name="GreyPit2" parent="." instance=ExtResource("3_e1aa1")]
+position = Vector2(408, 176)
+
+[node name="White" parent="." instance=ExtResource("4_4w265")]
+position = Vector2(144, 173)
+
+[node name="Black" parent="." instance=ExtResource("5_5nx27")]
+position = Vector2(432, 138)
+
+[node name="Grey" parent="." instance=ExtResource("6_0ku8k")]
+position = Vector2(216, 165)
+
+[node name="Grey2" parent="." instance=ExtResource("6_0ku8k")]
+position = Vector2(360, 146)
+
+[node name="Grey3" parent="." instance=ExtResource("6_0ku8k")]
+position = Vector2(280, 165)
+
+[node name="Grey4" parent="." instance=ExtResource("6_0ku8k")]
+position = Vector2(296, 165)
+
+[connection signal="body_entered" from="GreyPit" to="." method="_on_grey_pit_body_entered"]
+[connection signal="body_entered" from="GreyPit2" to="." method="_on_grey_pit_2_body_entered"]

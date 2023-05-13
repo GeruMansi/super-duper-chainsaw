@@ -20,35 +20,38 @@ func _ready():
 func _process(_delta):
 	if Input.is_action_just_pressed(\"reset\"):
 		get_tree().change_scene_to_file(\"res://levels/level_8.tscn\")
+	
+	if Count.level8 == 0:
+		get_tree().change_scene_to_file(\"res://levels/level_9.tscn\")
 
 
 func _on_black_pit_body_entered(body):
 	body.queue_free()
-	Count.level7 -= 1
+	Count.level8 -= 1
 	get_node(\"BlackPit\").queue_free()
 
 
 func _on_white_pit_body_entered(body):
 	body.queue_free()
-	Count.level7 -= 1
+	Count.level8 -= 1
 	get_node(\"WhitePit\").queue_free()
 
 
 func _on_white_pit_2_body_entered(body):
 	body.queue_free()
-	Count.level7 -= 1
+	Count.level8 -= 1
 	get_node(\"WhitePit2\").queue_free()
 
 
 func _on_white_pit_3_body_entered(body):
 	body.queue_free()
-	Count.level7 -= 1
+	Count.level8 -= 1
 	get_node(\"WhitePit3\").queue_free()
 
 
 func _on_white_pit_4_body_entered(body):
 	body.queue_free()
-	Count.level7 -= 1
+	Count.level8 -= 1
 	get_node(\"WhitePit4\").queue_free()
 "
 

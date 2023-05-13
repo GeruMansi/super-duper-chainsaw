@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://ckxbu3esj14ju"]
+
+[ext_resource type="Texture2D" uid="uid://bit3388o8dbal" path="res://assets/solid_white.jpg" id="1_2fnjv"]
+[ext_resource type="TileSet" uid="uid://4iut021ynux" path="res://levels/tileset.tres" id="2_8fnxx"]
+
+[sub_resource type="GDScript" id="GDScript_hlr1p"]
+script/source = "extends Node2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	Count.level11 = 8
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(_delta):
+	if Input.is_action_just_pressed(\"reset\"):
+		get_tree().change_scene_to_file(\"res://levels/level_11.tscn\")
+		
+	if Count.level11 == 0:
+		pass
+"
+
+[node name="Level11" type="Node2D"]
+script = SubResource("GDScript_hlr1p")
+
+[node name="SolidWhite" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(288, 168)
+scale = Vector2(18, 10.5)
+texture = ExtResource("1_2fnjv")
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("2_8fnxx")
+format = 2

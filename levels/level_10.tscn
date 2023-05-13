@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1854x7acaop3"]
+
+[ext_resource type="Texture2D" uid="uid://bit3388o8dbal" path="res://assets/solid_white.jpg" id="1_fk8fk"]
+
+[node name="level10" type="Node2D"]
+
+[node name="SolidWhite" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(0, 0, 0, 1)
+position = Vector2(288, 168)
+scale = Vector2(18, 10.5)
+texture = ExtResource("1_fk8fk")
+
+[node name="TileMap" type="TileMap" parent="."]
+format = 2

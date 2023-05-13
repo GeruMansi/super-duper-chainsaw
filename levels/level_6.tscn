@@ -20,6 +20,8 @@ func _ready():
 func _process(_delta):
 	if Input.is_action_just_pressed(\"reset\"):
 		get_tree().change_scene_to_file(\"res://levels/level_6.tscn\")
+	if Count.level6 == 0:
+		get_tree().change_scene_to_file(\"res://levels/level_7.tscn\")
 
 
 func _on_black_pit_body_entered(body):

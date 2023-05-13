@@ -1,0 +1,66 @@
+[gd_scene load_steps=8 format=3 uid="uid://db7iy5ds1bin5"]
+
+[ext_resource type="Texture2D" uid="uid://bit3388o8dbal" path="res://assets/solid_white.jpg" id="1_0djcw"]
+[ext_resource type="TileSet" uid="uid://4iut021ynux" path="res://levels/tileset.tres" id="2_ocvyl"]
+[ext_resource type="PackedScene" uid="uid://1w8v0f1i7yr5" path="res://grey_pit.tscn" id="3_77mv1"]
+[ext_resource type="PackedScene" uid="uid://c3i1q5j65j8tx" path="res://characters/grey.tscn" id="4_01jhp"]
+[ext_resource type="PackedScene" uid="uid://d3fb4hajdfjsc" path="res://characters/black.tscn" id="5_e67f0"]
+[ext_resource type="PackedScene" uid="uid://c0awxnm4fhre6" path="res://characters/white.tscn" id="6_hrugt"]
+
+[sub_resource type="GDScript" id="GDScript_7i2dl"]
+script/source = "extends Node2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	Count.level9 = 6
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(_delta):
+	if Input.is_action_just_pressed(\"reset\"):
+		get_tree().change_scene_to_file(\"res://levels/level_9.tscn\")
+	if Count.level9 == 0:
+		get_tree().change_scene_to_file(\"res://levels/level_10.tscn\")
+
+
+func _on_grey_pit_body_entered(body):
+	body.queue_free()
+	Count.level9 -= 1
+"
+
+[node name="Level9" type="Node2D"]
+script = SubResource("GDScript_7i2dl")
+
+[node name="SolidWhite" type="Sprite2D" parent="."]
+position = Vector2(288, 168)
+scale = Vector2(18, 10.5)
+texture = ExtResource("1_0djcw")
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("2_ocvyl")
+format = 2
+layer_0/tile_data = PackedInt32Array(983052, 196608, 1, 983063, 327680, 1, 262156, 196608, 0, 1048588, 196608, 2, 1048589, 262144, 2, 1048598, 262144, 2, 1048599, 327680, 2, 1048590, 458752, 0, 1048591, 393216, 2, 1048592, 65536, 5, 1048593, 65536, 5, 1048594, 65536, 5, 1048595, 65536, 5, 1048596, 458752, 2, 1048597, 393216, 0, 327692, 327680, 1, 393228, 458752, 4, 458764, 393216, 5, 655372, 0, 4, 720908, 0, 4, 786444, 0, 4, 851980, 393216, 6, 917516, 458752, 3, 524300, 0, 4, 589836, 0, 4, 917527, 458752, 3, 851991, 393216, 6, 786455, 0, 4, 720919, 0, 4, 655383, 0, 4, 589847, 0, 4, 524311, 0, 4, 458775, 393216, 5, 393239, 458752, 4, 327703, 327680, 1, 262157, 262144, 0, 262158, 458752, 0, 262159, 393216, 2, 262160, 65536, 5, 262161, 65536, 5, 262162, 65536, 5, 262163, 65536, 5, 262164, 458752, 2, 262165, 393216, 0, 262166, 262144, 0, 262167, 327680, 0, 327693, 262144, 1, 393229, 262144, 1, 458765, 262144, 1, 524301, 262144, 1, 589837, 262144, 1, 655373, 262144, 1, 720909, 262144, 1, 786445, 262144, 1, 851981, 262144, 1, 917517, 262144, 1, 983053, 262144, 1, 327694, 262144, 1, 393230, 262144, 1, 458766, 262144, 1, 524302, 262144, 1, 589838, 262144, 1, 655374, 262144, 1, 720910, 262144, 1, 786446, 262144, 1, 851982, 262144, 1, 917518, 262144, 1, 983054, 262144, 1, 327695, 262144, 1, 393231, 262144, 1, 458767, 262144, 1, 524303, 262144, 1, 589839, 262144, 1, 655375, 262144, 1, 720911, 262144, 1, 786447, 262144, 1, 851983, 262144, 1, 917519, 262144, 1, 983055, 262144, 1, 327696, 262144, 1, 393232, 262144, 1, 458768, 262144, 1, 524304, 262144, 1, 589840, 262144, 1, 655376, 262144, 1, 720912, 262144, 1, 786448, 262144, 1, 851984, 262144, 1, 917520, 262144, 1, 983056, 262144, 1, 327697, 262144, 1, 393233, 262144, 1, 458769, 262144, 1, 524305, 262144, 1, 589841, 262144, 1, 655377, 262144, 1, 720913, 262144, 1, 786449, 262144, 1, 851985, 262144, 1, 917521, 262144, 1, 983057, 262144, 1, 327698, 262144, 1, 393234, 262144, 1, 458770, 262144, 1, 524306, 262144, 1, 589842, 262144, 1, 655378, 262144, 1, 720914, 262144, 1, 786450, 262144, 1, 851986, 262144, 1, 917522, 262144, 1, 983058, 262144, 1, 327699, 262144, 1, 393235, 262144, 1, 458771, 262144, 1, 524307, 262144, 1, 589843, 262144, 1, 655379, 262144, 1, 720915, 262144, 1, 786451, 262144, 1, 851987, 262144, 1, 917523, 262144, 1, 983059, 262144, 1, 327700, 262144, 1, 393236, 262144, 1, 458772, 262144, 1, 524308, 262144, 1, 589844, 262144, 1, 655380, 262144, 1, 720916, 262144, 1, 786452, 262144, 1, 851988, 262144, 1, 917524, 262144, 1, 983060, 262144, 1, 327701, 262144, 1, 393237, 262144, 1, 458773, 262144, 1, 524309, 262144, 1, 589845, 262144, 1, 655381, 262144, 1, 720917, 262144, 1, 786453, 262144, 1, 851989, 262144, 1, 917525, 262144, 1, 983061, 262144, 1, 327702, 262144, 1, 393238, 262144, 1, 458774, 262144, 1, 524310, 262144, 1, 589846, 262144, 1, 655382, 262144, 1, 720918, 262144, 1, 786454, 262144, 1, 851990, 262144, 1, 917526, 262144, 1, 983062, 262144, 1)
+
+[node name="GreyPit" parent="." instance=ExtResource("3_77mv1")]
+position = Vector2(288, 160)
+
+[node name="Grey" parent="." instance=ExtResource("4_01jhp")]
+position = Vector2(256, 157)
+
+[node name="Grey2" parent="." instance=ExtResource("4_01jhp")]
+position = Vector2(320, 157)
+
+[node name="Grey3" parent="." instance=ExtResource("4_01jhp")]
+position = Vector2(288, 184)
+
+[node name="Grey4" parent="." instance=ExtResource("4_01jhp")]
+position = Vector2(288, 128)
+
+[node name="Black" parent="." instance=ExtResource("5_e67f0")]
+position = Vector2(232, 96)
+
+[node name="White" parent="." instance=ExtResource("6_hrugt")]
+position = Vector2(344, 232)
+
+[connection signal="body_entered" from="GreyPit" to="." method="_on_grey_pit_body_entered"]

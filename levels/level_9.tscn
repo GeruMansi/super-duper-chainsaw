@@ -19,12 +19,14 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	if Input.is_action_just_pressed(\"reset\"):
+		World.restart.playing = true
 		get_tree().change_scene_to_file(\"res://levels/level_9.tscn\")
 	if Count.level9 == 0:
-		get_tree().change_scene_to_file(\"res://levels/level_10.tscn\")
+		World.change_level(World.LEVEL_10)
 
 
 func _on_grey_pit_body_entered(body):
+	World.down.playing = true
 	body.queue_free()
 	Count.level9 -= 1
 "
@@ -62,5 +64,13 @@ position = Vector2(232, 96)
 
 [node name="White" parent="." instance=ExtResource("6_hrugt")]
 position = Vector2(344, 232)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 10.0
+offset_top = 5.0
+offset_right = 50.0
+offset_bottom = 31.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "#9"
 
 [connection signal="body_entered" from="GreyPit" to="." method="_on_grey_pit_body_entered"]

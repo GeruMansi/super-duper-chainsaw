@@ -10,27 +10,27 @@
 [sub_resource type="GDScript" id="GDScript_rvbfj"]
 script/source = "extends Node2D
 
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	Count.level10 = 6
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	if Input.is_action_just_pressed(\"reset\"):
+		World.restart.playing = true
 		get_tree().change_scene_to_file(\"res://levels/level_10.tscn\")
 	
 	if Count.level10 == 0:
-		get_tree().change_scene_to_file(\"res://levels/level_0.tscn\")
+		World.change_level(World.LEVEL_11)
 
 
 func _on_grey_pit_body_entered(body):
+	World.down.playing = true
 	body.queue_free()
 	Count.level10 -= 1
 
 
 func _on_grey_pit_2_body_entered(body):
+	World.down.playing = true
 	body.queue_free()
 	Count.level10 -= 1
 "
@@ -72,6 +72,13 @@ position = Vector2(280, 165)
 
 [node name="Grey4" parent="." instance=ExtResource("6_0ku8k")]
 position = Vector2(296, 165)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 10.0
+offset_top = 5.0
+offset_right = 50.0
+offset_bottom = 28.0
+text = "#10"
 
 [connection signal="body_entered" from="GreyPit" to="." method="_on_grey_pit_body_entered"]
 [connection signal="body_entered" from="GreyPit2" to="." method="_on_grey_pit_2_body_entered"]

@@ -1,7 +1,152 @@
-[gd_scene load_steps=3 format=3 uid="uid://f3rpr25ixbwu"]
+[gd_scene load_steps=20 format=3 uid="uid://f3rpr25ixbwu"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_onga6"]
 [ext_resource type="Texture2D" uid="uid://bit3388o8dbal" path="res://assets/solid_white.jpg" id="2_ykfxn"]
+[ext_resource type="Texture2D" uid="uid://be4se5t5v2htf" path="res://assets/play_idle.png" id="3_pl7l0"]
+[ext_resource type="Texture2D" uid="uid://clt2r4m6p4wif" path="res://assets/title.png" id="3_x84tm"]
+[ext_resource type="Texture2D" uid="uid://dm3xogm4u4if7" path="res://assets/play_hover.png" id="4_uxn0f"]
+[ext_resource type="Texture2D" uid="uid://brf1ji4l06m6i" path="res://assets/Sprite-0001.png" id="7_yhejj"]
+
+[sub_resource type="Animation" id="Animation_uw2wh"]
+resource_name = "animation1"
+length = 6.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer/AnimatedSprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-16, 216), Vector2(600, 216)]
+}
+
+[sub_resource type="Animation" id="Animation_p4d64"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer/AnimatedSprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-16, 216)]
+}
+
+[sub_resource type="Animation" id="Animation_ubsmf"]
+resource_name = "animation2"
+length = 6.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer/AnimatedSprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(600, 216), Vector2(-10, 216)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qagex"]
+_data = {
+"RESET": SubResource("Animation_p4d64"),
+"animation1": SubResource("Animation_uw2wh"),
+"animation2": SubResource("Animation_ubsmf")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ba12m"]
+atlas = ExtResource("7_yhejj")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vmgmv"]
+atlas = ExtResource("7_yhejj")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_knidu"]
+atlas = ExtResource("7_yhejj")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pco5x"]
+atlas = ExtResource("7_yhejj")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7avmi"]
+atlas = ExtResource("7_yhejj")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_odo16"]
+atlas = ExtResource("7_yhejj")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k5tv5"]
+atlas = ExtResource("7_yhejj")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ixn63"]
+atlas = ExtResource("7_yhejj")
+region = Rect2(48, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xylk7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ba12m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vmgmv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_knidu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pco5x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_knidu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vmgmv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ba12m")
+}],
+"loop": true,
+"name": &"black_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7avmi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_odo16")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k5tv5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ixn63")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k5tv5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_odo16")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7avmi")
+}],
+"loop": true,
+"name": &"white_right",
+"speed": 5.0
+}]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_onga6")
@@ -11,6 +156,11 @@ position = Vector2(288, 168)
 scale = Vector2(18, 10.5)
 texture = ExtResource("2_ykfxn")
 
+[node name="Title" type="Sprite2D" parent="."]
+position = Vector2(280, 104)
+scale = Vector2(0.58, 0.58)
+texture = ExtResource("3_x84tm")
+
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
@@ -18,20 +168,35 @@ offset_right = 576.0
 offset_bottom = 336.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
+metadata/_edit_lock_ = true
 
-[node name="Button" type="Button" parent="Control"]
+[node name="TextureButton" type="TextureButton" parent="Control"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -62.5
-offset_top = 44.5
-offset_right = 62.5
-offset_bottom = 75.5
+offset_left = -64.0
+offset_top = 71.0
+offset_right = 124.0
+offset_bottom = 119.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Play"
+texture_normal = ExtResource("3_pl7l0")
+texture_hover = ExtResource("4_uxn0f")
+ignore_texture_size = true
+stretch_mode = 4
 
-[connection signal="pressed" from="Control/Button" to="." method="_on_button_pressed"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_qagex")
+}
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="AnimationPlayer"]
+position = Vector2(-16, 216)
+sprite_frames = SubResource("SpriteFrames_xylk7")
+animation = &"black_left"
+autoplay = "white_right"
+
+[connection signal="pressed" from="Control/TextureButton" to="." method="_on_texture_button_pressed"]

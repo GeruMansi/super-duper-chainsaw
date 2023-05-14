@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://cdmcggjuatscu"]
+
+[ext_resource type="Script" path="res://World.gd" id="1_n8k6b"]
+[ext_resource type="AudioStream" uid="uid://bqb0e6b87dhd6" path="res://assets/Patreon Goal Reward Loops - Track 06.wav" id="2_2gdk7"]
+[ext_resource type="AudioStream" uid="uid://bocbfvmtllvtg" path="res://assets/boop.wav" id="3_hqo0f"]
+[ext_resource type="AudioStream" uid="uid://bquxig6kb754r" path="res://assets/down.wav" id="4_5gg52"]
+[ext_resource type="AudioStream" uid="uid://bgefl6c6lr5lg" path="res://assets/restart.wav" id="5_ihk2j"]
+
+[node name="World" type="CanvasLayer"]
+script = ExtResource("1_n8k6b")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_2gdk7")
+volume_db = -10.0
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_hqo0f")
+
+[node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_5gg52")
+
+[node name="AudioStreamPlayer4" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_ihk2j")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -69.0
+offset_top = 5.0
+offset_right = 11.0
+offset_bottom = 31.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "R - Restart"

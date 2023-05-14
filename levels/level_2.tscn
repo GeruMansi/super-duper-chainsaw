@@ -1,15 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://db6o1nhamgx4q"]
+[gd_scene load_steps=7 format=3 uid="uid://db6o1nhamgx4q"]
 
 [ext_resource type="Texture2D" uid="uid://bit3388o8dbal" path="res://assets/solid_white.jpg" id="1_vutbv"]
 [ext_resource type="TileSet" uid="uid://4iut021ynux" path="res://levels/tileset.tres" id="2_jo1p4"]
 [ext_resource type="PackedScene" uid="uid://c0awxnm4fhre6" path="res://characters/white.tscn" id="3_tw83v"]
 [ext_resource type="PackedScene" uid="uid://c3g675oj2tjlq" path="res://black_pit.tscn" id="4_lxcgf"]
+[ext_resource type="Texture2D" uid="uid://c01pr851jcpt7" path="res://assets/text4.png" id="5_m354o"]
 
 [sub_resource type="GDScript" id="GDScript_rdy27"]
 script/source = "extends Node2D
 
 func _ready():
 	Count.level2 = 2
+	World.label1.show()
 
 func _process(_delta):
 	if Input.is_action_just_pressed(\"reset\"):
@@ -56,5 +58,9 @@ offset_right = 50.0
 offset_bottom = 28.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "#2"
+
+[node name="Text4" type="Sprite2D" parent="."]
+position = Vector2(288, 48)
+texture = ExtResource("5_m354o")
 
 [connection signal="body_entered" from="BlackPit" to="." method="_on_black_pit_body_entered"]

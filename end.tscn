@@ -1,0 +1,123 @@
+[gd_scene load_steps=10 format=3 uid="uid://d0v0clgs5nt13"]
+
+[ext_resource type="Texture2D" uid="uid://bit3388o8dbal" path="res://assets/solid_white.jpg" id="1_wl1wt"]
+[ext_resource type="Texture2D" uid="uid://brf1ji4l06m6i" path="res://assets/Sprite-0001.png" id="2_p4uly"]
+
+[sub_resource type="GDScript" id="GDScript_4ibea"]
+script/source = "extends Node2D
+
+func _ready():
+	World.label2.hide()
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hjlgb"]
+atlas = ExtResource("2_p4uly")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g3sx2"]
+atlas = ExtResource("2_p4uly")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6qj03"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hjlgb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g3sx2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g3sx2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hjlgb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hjlgb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hjlgb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_rnb3t"]
+resource_name = "fade"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_6h0n4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_k8qps"]
+_data = {
+"RESET": SubResource("Animation_6h0n4"),
+"fade": SubResource("Animation_rnb3t")
+}
+
+[node name="End" type="Node2D"]
+script = SubResource("GDScript_4ibea")
+
+[node name="SolidWhite" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(288, 168)
+scale = Vector2(18, 10.5)
+texture = ExtResource("1_wl1wt")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 64.0
+offset_top = -4.0
+offset_right = 512.0
+offset_bottom = 332.0
+text = "Congratulations!
+
+You have managed to control the slime population successfully!
+
+Thank you for playing! I hope you had as much fun as I had creating this game.
+
+This is my very first game and I'm still learning. Hopefully, I will make much better games in the future."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(288, 64)
+sprite_frames = SubResource("SpriteFrames_6qj03")
+autoplay = "default"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "fade"
+libraries = {
+"": SubResource("AnimationLibrary_k8qps")
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 576.0
+offset_bottom = 336.0
+color = Color(0, 0, 0, 1)

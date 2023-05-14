@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://db7iy5ds1bin5"]
+[gd_scene load_steps=9 format=3 uid="uid://db7iy5ds1bin5"]
 
 [ext_resource type="Texture2D" uid="uid://bit3388o8dbal" path="res://assets/solid_white.jpg" id="1_0djcw"]
 [ext_resource type="TileSet" uid="uid://4iut021ynux" path="res://levels/tileset.tres" id="2_ocvyl"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c3i1q5j65j8tx" path="res://characters/grey.tscn" id="4_01jhp"]
 [ext_resource type="PackedScene" uid="uid://d3fb4hajdfjsc" path="res://characters/black.tscn" id="5_e67f0"]
 [ext_resource type="PackedScene" uid="uid://c0awxnm4fhre6" path="res://characters/white.tscn" id="6_hrugt"]
+[ext_resource type="Texture2D" uid="uid://bkfbmny6tcxh8" path="res://assets/text6.png" id="7_mqtv6"]
 
 [sub_resource type="GDScript" id="GDScript_7i2dl"]
 script/source = "extends Node2D
@@ -72,5 +73,9 @@ offset_right = 50.0
 offset_bottom = 31.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "#9"
+
+[node name="Text6" type="Sprite2D" parent="."]
+position = Vector2(288, 40)
+texture = ExtResource("7_mqtv6")
 
 [connection signal="body_entered" from="GreyPit" to="." method="_on_grey_pit_body_entered"]

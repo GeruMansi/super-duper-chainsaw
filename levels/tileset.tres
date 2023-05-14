@@ -1,6 +1,15 @@
-[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://4iut021ynux"]
+[gd_resource type="TileSet" load_steps=6 format=3 uid="uid://4iut021ynux"]
 
 [ext_resource type="Texture2D" uid="uid://dc0gnm8mhf81y" path="res://assets/tileset.png" id="1_gggwj"]
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_n8oam"]
+tile_data = PackedInt32Array(0, 196608, 0, 65536, 196608, 2, 1, 327680, 0, 65537, 327680, 2)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_47agq"]
+tile_data = PackedInt32Array(0, 393216, 2, 1, 131072, 3, 65537, 393216, 6)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_oh25i"]
+tile_data = PackedInt32Array(65536, 393216, 2, 1, 393216, 5, 65537, 131072, 5)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8upjl"]
 texture = ExtResource("1_gggwj")
@@ -308,3 +317,6 @@ terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Terrain 0"
 terrain_set_0/terrain_0/color = Color(0, 0, 0.568627, 1)
 sources/0 = SubResource("TileSetAtlasSource_8upjl")
+pattern_0 = SubResource("TileMapPattern_n8oam")
+pattern_1 = SubResource("TileMapPattern_47agq")
+pattern_2 = SubResource("TileMapPattern_oh25i")
